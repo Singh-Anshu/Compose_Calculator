@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.composecalculator.ui.theme.ComposeCalculatorTheme
+import com.example.composecalculator.ui.theme.LightGray
 import com.example.composecalculator.ui.theme.MediumGray
 
 class MainActivity : ComponentActivity() {
@@ -25,25 +26,21 @@ class MainActivity : ComponentActivity() {
         setContent {
             ComposeCalculatorTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
 
-                    val viewModel = viewModel<CalculatorViewModel>()
+                val viewModel = viewModel<CalculatorViewModel>()
                     val state = viewModel.state
                     val buttonSpacing = 8.dp
                     
                     Calculator(
                         state = state,
-                        onAction = viewModel::onAction,
-                        buttonSpacing = buttonSpacing,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier
+                            .fillMaxSize()
                             .background(MediumGray)
-                            .padding(16.dp)
+                            .padding(16.dp),
+                        onAction = viewModel::onAction,
+                        buttonSpacing = buttonSpacing
                     )
 
-                }
             }
         }
     }
